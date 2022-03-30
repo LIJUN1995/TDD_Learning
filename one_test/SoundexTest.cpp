@@ -9,9 +9,7 @@ public:
 };
 
 TEST_F(SoundexEncoding, RetainSoleLetterOfOneLetterWord) {
-    auto encoded = soundex.encode("A");
-
-    ASSERT_THAT(encoded, Eq("A000"));
+    ASSERT_THAT(soundex.encode("Ab"), Eq("A100"));
 }
 
 TEST_F(SoundexEncoding, PadsWithZeroToEnsureThreeDigits) {
