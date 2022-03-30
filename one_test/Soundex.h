@@ -6,7 +6,7 @@
 class Soundex {
 public:
     std::string encode(const std::string& word) const {
-        return zeroPad(head(word) + encodedDigits(word));
+        return zeroPad(head(word) + encodedDigits(tail(word)));
     }
 
 private:
@@ -21,9 +21,11 @@ private:
     }
 
     std::string encodedDigits(const std::string& word) const {
-        if (word.length() > 1)
-            return encodedDigit(word[1]);
-        return "";
+        std::string encoding;
+        for (auto letter: word)
+            encoding += encodedDigit(letter);
+            
+        return encoding;
     }
 
     std::string encodedDigit(char letter) const {
@@ -36,6 +38,10 @@ private:
         };
 
         return encodings.find(letter)->second;
+    }
+
+    std::string tail(const std::string& word) const {
+        return word.substr(1);
     }
 };
 
