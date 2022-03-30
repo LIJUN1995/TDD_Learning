@@ -30,6 +30,6 @@ TEST_F(SoundexEncoding, IgnoresNonAlphabetics) {
     ASSERT_THAT(soundex.encode("A#"), Eq("A000"));
 }
 
-TEST_F(SoundexEncoding, DISABLED_LimitsLengthToFourCharacters) {
-    ASSERT_THAT(soundex.encode("Dcdlb"), Eq("4u"));
+TEST_F(SoundexEncoding, LimitsLengthToFourCharacters) {
+    ASSERT_THAT(soundex.encode("Dcdlb").length(), Eq(4u));
 }
